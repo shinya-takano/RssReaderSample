@@ -16,6 +16,13 @@ import com.squareup.picasso.Picasso
  */
 class RssRecycleViewAdapter(private val context: Context?, private val list: List<RowData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    companion object {
+        /** 行Top */
+        private const val ROW_TYPE_TOP = 0
+        /** 行Top以外 */
+        private const val ROW_TYPE_OTHER = 1
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == 0) {
             val inflate = LayoutInflater.from(parent.context).inflate(R.layout.row_top, parent, false)
@@ -67,9 +74,9 @@ class RssRecycleViewAdapter(private val context: Context?, private val list: Lis
 
     override fun getItemViewType(position: Int): Int {
         return if (position == 0) {
-            0
+            ROW_TYPE_TOP
         } else {
-            1
+            ROW_TYPE_OTHER
         }
     }
 
